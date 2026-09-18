@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------
-# ONIONLENS 360 — .gitignore
+# ONIONLENS 360 â€” .gitignore
 # Covers: Next.js / Vite / React, Python / FastAPI, Docker, Supabase, secrets
 # -----------------------------------------------------------------------------
 
@@ -11,11 +11,14 @@
 .env.production
 backend/.env
 frontend/.env
-# Keep .env.example files — they are safe to commit
+
+# Allow production frontend API configuration for Vercel
+!frontend/.env.production
+
+# Keep .env.example files â€” they are safe to commit
 !.env.example
 !backend/.env.example
 !frontend/.env.example
-
 # -- Python --------------------------------------------------------------------
 __pycache__/
 *.py[cod]
