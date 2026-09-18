@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border border-gray-100 p-6;
+  }
+  .stat-value {
+    @apply text-3xl font-bold text-gray-900 leading-none;
+  }
+  .stat-label {
+    @apply text-sm text-gray-500 mt-1;
+  }
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg
+           transition-colors duration-150 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply bg-white hover:bg-gray-50 text-gray-700 font-medium px-4 py-2 rounded-lg
+           border border-gray-200 transition-colors duration-150 flex items-center gap-2;
+  }
+  .btn-danger {
+    @apply bg-red-600 hover:bg-red-700 text-white font-medium px-4 py-2 rounded-lg
+           transition-colors duration-150 flex items-center gap-2;
+  }
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  .badge-healthy { @apply badge bg-green-100 text-green-800; }
+  .badge-damaged { @apply badge bg-orange-100 text-orange-800; }
+  .badge-rotten { @apply badge bg-red-100 text-red-800; }
+  .badge-sprouted { @apply badge bg-yellow-100 text-yellow-800; }
+  .badge-undersized { @apply badge bg-purple-100 text-purple-800; }
+  .badge-unknown { @apply badge bg-gray-100 text-gray-600; }
+  .badge-demo { @apply badge bg-amber-100 text-amber-800; }
+  .grade-A { @apply text-green-600; }
+  .grade-URS { @apply text-yellow-600; }
+  .grade-REJECT { @apply text-red-600; }
+  .nav-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium
+           text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-150;
+  }
+  .nav-link.active {
+    @apply bg-blue-50 text-blue-700;
+  }
+}
+
+/* Confidence bar */
+.confidence-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: #e5e7eb;
+}
+.confidence-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }

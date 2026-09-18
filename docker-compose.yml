@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:////data/onionlens.db
+      - SECRET_KEY=onionlens360-docker-secret
+      - DEMO_MODE=true
+      - UPLOAD_DIR=/data/storage/originals
+      - VIDEO_DIR=/data/storage/videos
+      - FRAMES_DIR=/data/storage/frames
+      - EVIDENCE_DIR=/data/storage/evidence
+      - REPORTS_DIR=/data/storage/reports
+      - DATASET_DIR=/data/storage/dataset
+    volumes:
+      - onionlens_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  onionlens_data:
