@@ -1,8 +1,7 @@
 import axios from 'axios'
 
-// In dev: proxy via Vite (/api → localhost:8000)
-// In production: VITE_API_URL points to deployed backend (e.g. Railway)
-const BASE = import.meta.env.VITE_API_URL || ''
+// Production backend
+const BASE = 'https://onionlens-360-production.up.railway.app'
 
 const api = axios.create({
   baseURL: `${BASE}/api`,
@@ -131,7 +130,7 @@ export const datasetAPI = {
   },
   markReviewed: (id) => api.put(`/dataset/items/${id}/review`),
   deleteItem: (id) => api.delete(`/dataset/items/${id}`),
-  exportUrl: () => `/api/dataset/export/yolo`,
+  exportUrl: () => `${BASE}/api/dataset/export/yolo`,
 }
 
 // ─── Model Versions ───────────────────────────────────────────────────────────
@@ -145,8 +144,8 @@ export const modelsAPI = {
 export const reportAPI = {
   generate: (batchId) => api.post(`/reports/${batchId}/generate`),
   get: (batchId) => api.get(`/reports/${batchId}`),
-  downloadUrl: (batchId) => `/api/reports/${batchId}/download`,
-  qrUrl: (batchId) => `/api/reports/${batchId}/qr`,
+  downloadUrl: (batchId) => `${BASE}/api/reports/${batchId}/download`,
+  qrUrl: (batchId) => `${BASE}/api/reports/${batchId}/qr`,
 }
 
 // ─── Standards ────────────────────────────────────────────────────────────────
@@ -160,7 +159,7 @@ export const standardsAPI = {
 
 // ─── Verify (public) ──────────────────────────────────────────────────────────
 export const verifyAPI = {
-  verify: (token) => axios.get(`/api/verify/${token}`),
+  verify: (token) => axios.get(`${BASE}/api/verify/${token}`),
 }
 
 // ─── Intelligence ─────────────────────────────────────────────────────────────
